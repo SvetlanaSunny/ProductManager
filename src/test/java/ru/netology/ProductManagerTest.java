@@ -3,6 +3,9 @@ package ru.netology;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class ProductManagerTest {
 
   @Test
@@ -50,5 +53,36 @@ public class ProductManagerTest {
     Assertions.assertArrayEquals(expected, actual);
   }
 
+  @Test
+  public void searchBook() {
+    Product book = new Book(1, "Java", 150, "netology");
+    boolean expected = true;
+    boolean actual = book.matches("netology");
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  public void searchBook1() {
+    Product book = new Book(1, "Java", 150, "netology");
+    boolean expected = true;
+    boolean actual = book.matches("Java");
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  public void searchSmartphone() {
+    Product smartphone = new Smartphone(2, "phone", 250, "nokia");
+    boolean expected = true;
+    boolean actual = smartphone.matches("nokia");
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  public void searchSmartphone1() {
+    Product smartphone = new Smartphone(2, "phone", 250, "nokia");
+    boolean expected = true;
+    boolean actual = smartphone.matches("phone");
+    assertEquals(expected, actual);
+  }
 }
 
