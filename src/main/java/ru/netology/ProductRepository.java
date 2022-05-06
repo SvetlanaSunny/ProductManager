@@ -20,14 +20,6 @@ public class ProductRepository {
     return repository;
   }
 
-  public Product findById(int id) {
-    for (Product product : repository) {
-      if (product.getId() == id) {
-        return product;
-      }
-    }
-    return null;
-  }
 
   public void removeById(int id) {
     Product[] newRepository = new Product[repository.length - 1];
