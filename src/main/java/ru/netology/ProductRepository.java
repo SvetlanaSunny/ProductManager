@@ -2,6 +2,7 @@ package ru.netology;
 
 public class ProductRepository {
 
+
   private Product[] repository = new Product[0];
 
   public void saveProduct(Product item) {
@@ -17,7 +18,19 @@ public class ProductRepository {
     return repository;
   }
 
+  public Product findById(int id) {
+    for (Product product : repository) {
+      if (product.getId() == id) {
+        return product;
+      }
+    }
+    return null;
+  }
+
   public void removeById(int id) {
+    if (findById(id) == null) {
+      throw new NotFoundException("Element with id: " + id + " not found");
+    }
     Product[] newRepository = new Product[repository.length - 1];
     int i = 0;
     for (Product item : repository) {
