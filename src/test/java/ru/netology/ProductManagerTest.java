@@ -113,7 +113,33 @@ public class ProductManagerTest {
     assertThrows(NotFoundException.class,() ->{
       repository.removeById(6);
     });
-
   }
+  @Test
+  public void addItem() {
+    ProductRepository repository = new ProductRepository();
+    Product book = new Book(6, "Java", 150, "netology");
+    Product smartphone = new Smartphone(2, "phone", 250, "nokia");
+    Product book1 = new Book(3, "Java", 100, "Берт Бэйтс");
+    repository.saveProduct(book);
+    repository.saveProduct(smartphone);
+    repository.saveProduct(book1);
+    Product[] actual = repository.getAll();
+    Product[] expected = {book, smartphone, book1};
+    Assertions.assertArrayEquals(expected, actual);
+  }
+  @Test
+  public void addItemExistingId() {
+    ProductRepository repository = new ProductRepository();
+    Product book = new Book(6, "Java", 150, "netology");
+    Product smartphone = new Smartphone(2, "phone", 250, "nokia");
+    Product book1 = new Book(3, "Java", 100, "Берт Бэйтс");
+    repository.saveProduct(book);
+    repository.saveProduct(smartphone);
+    repository.saveProduct(book1);
+    assertThrows(AlreadyExistsException.class,() ->{
+      repository.saveProduct(new Book(3, "Java new", 150, "Берт Берт"));
+    });
+  }
+
 }
 
