@@ -25,11 +25,11 @@ public class ProductManager {
     for (Product product : repository.getAll()) {
       if (matches(product, text)) {
         // "добавляем в конец" массива result продукт product
-        Product[] searchResults = new Product[result.length+1];
-        for (int i=0; i< result.length; i++){
+        Product[] searchResults = new Product[result.length + 1];
+        for (int i = 0; i < result.length; i++) {
           searchResults[i] = result[i];
         }
-        searchResults[searchResults.length-1]=product;
+        searchResults[searchResults.length - 1] = product;
         result = searchResults;
       }
     }
